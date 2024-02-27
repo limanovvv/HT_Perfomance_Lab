@@ -2,6 +2,8 @@ package org.example;
 
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MinOfSteps {
 
@@ -18,10 +20,12 @@ public class MinOfSteps {
             int max = Integer.MIN_VALUE;
             int count = 0;
 
+            List<Integer> list = new ArrayList<>();
+
             while ((line = reader.readLine()) != null) {
-                int num = Integer.parseInt(line);
-                sum += num;
-                max = Math.max(max, num);
+                list.add(Integer.parseInt(line));
+                sum += list.get(count);
+                max = Math.max(max, list.get(count));
                 count++;
             }
 
@@ -30,8 +34,8 @@ public class MinOfSteps {
             int target = (int) Math.round((double) sum / count);
             int moves = 0;
 
-            for (int i = 0; i < count; i++) {
-                moves += Math.abs(target - Integer.parseInt(line));
+            for (int j = 0; j < count; j++) {
+                moves += Math.abs(target - list.get(j));
             }
 
             System.out.println("Min of steps: " + moves);
